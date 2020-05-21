@@ -1,0 +1,44 @@
+import shutil
+import os
+# got an error and needed to imported os.
+
+def main():
+
+    folder_name = "US FOODS TEST/"
+    path = "C:/Users/victoria.calteaux/Desktop/" + folder_name
+
+    for root, dirs, files in os.walk(path):
+        print(files)
+        for name in files:
+            if "PORT_ORANGE" in name:
+                dest1 = name[:-16] + "_FL_item.xlsx"
+                dest2 = name[:-16] + "_SO_item.xlsx"
+                shutil.copyfile(path+name, path+dest1)
+                shutil.copyfile(path+name, path+dest2)
+            elif "CLEVELAND" in name:
+                dest1 = name[:-19] + "_MA_item.xlsx"
+                dest2 = name[:-19] + "_MW_item.xlsx"
+                dest3 = name[:-19] + "_NE_item.xlsx"
+                shutil.copyfile(path+name, path+dest1)
+                shutil.copyfile(path+name, path+dest2)
+                shutil.copyfile(path+name, path+dest3)
+            elif "KANSAS_CITY" in name:
+                dest1 = name[:-16] + "_MW_item.xlsx"
+                dest2 = name[:-16] + "_RM_item.xlsx"
+                shutil.copyfile(path+name, path+dest1)
+                shutil.copyfile(path+name, path+dest2)
+            elif "SALT_LAKE_CITY" in name:
+                dest1 = name[:-16] + "_NC_item.xlsx"
+                dest2 = name[:-16] + "_RM_item.xlsx"
+                shutil.copyfile(path+name, path+dest1)
+                shutil.copyfile(path+name, path+dest2)
+
+    for name in os.listdir(path):
+        if "FL_SO" in name:
+            os.unlink(path+name)
+        elif "MA_MW_NE" in name:
+            os.unlink(path+name)
+        elif "MW_RM" in name:
+            os.unlink(path+name)
+        elif "NC_RM" in name:
+            os.unlink(path+name)
